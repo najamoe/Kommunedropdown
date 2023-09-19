@@ -23,15 +23,15 @@ function fillDropdownObj(item) {
 function inputChanged(key) {
     const selindex = ddKommuner.selectedIndex;
     const selectedOption = ddKommuner.options[selindex];
-    const kommune = selectedOption.value //kan ikke bruges er lavet om til en string
+    const kommune = selectedOption.value
     console.log(kommune)
     const kom2 = selectedOption.kommune
     console.log(kom2)
     createATag(kom2)
 }
 
-async function fetchKommuner(urlKommune) {
-    let kommuneArr = await fetchAnyUrl(urlKommune)
+async function fetchKommuner(urlKommune) { //async means a functions always returns a promise (promise = pending, fulfilled, rejected)
+    let kommuneArr = await fetchAnyUrl(urlKommune) //Await only works in async functions, makes js wait until the promise settles and returns the result
     console.log(kommuneArr)
     ddKommuner.innerHTML = ""
     kommuneArr.forEach(fillDropdownObj)
@@ -42,6 +42,17 @@ function actionFetch() {
     console.log(kommuner)
 }
 
+function divtag(komObj){
+    console.log(komObj)
+    //insert inputfield to dropdown screen
+    const aTag = document.createElement("atag")
+    aTag.setAttribute(href, komObj.href)
+    //add listener to the field (done at the end under other eventlisteners)
+    //when input changes, check datastructure to check if the komobj exists
+
+}
+
 
 pbFetchKommuner.addEventListener('click', actionFetch)
 ddKommuner.addEventListener('change', inputChanged)
+divTag.addEventListener('click', inputChanged)
